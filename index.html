@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>J. Luis Cardenas - Software Engineer / ML Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        background-image: url('gradient-hexagonal-background_23-2148932923.jpeg');
+        background-repeat: repeat;
+        background-size:cover;
+    }
+    .jsShell a {
+        color: white;
+        text-decoration: underline;
+    }
+    .shell div {
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+</style>
+<body>
+<main class="mx-auto w-full lg:w-3/4 max-w-[90rem]">
+  <div id="shell-1" class="shell"></div>
+</main>
+
+<script type="module">
+  import { JsShell } from './jsShell.js';
+
+  const commands = {
+    about: {
+      handler: about,
+      description: 'About me'
+    },
+    contact: {
+      handler: contact,
+      description: 'Contact'
+    },
+    certifications: {
+      handler: certifications,
+      description: 'Certifications'
+    },
+    clear: {
+      handler: (shell) => {
+        shell.clear();
+      },
+      description: 'Clear console.'
+    },
+    cd: {
+      handler: (shell, argv) => {
+        shell.setPrompt(makePS1(argv[1] || '~'));
+      },
+      description: 'cd [dir] Change working directory.'
+    },
+    experience: {
+      handler: experience,
+      description: 'Professional experience'
+    },
+    help: {
+      handler: helpMenu,
+      description: 'Show available commands'
+    },
+    reboot: {
+      handler: startShell,
+      description: 'restart shell process'
+    },
+    exit: {
+      handler: (shell) => {
+        shell.print('Bye!');
+      },
+      description: 'Stop the shell prompt'
+    }
+
+  };
+
+  const bgColors = [
+    'rgb(0,0,0,0.2)',
+    'rgb(33,42,56)',
+    'rgb(85,16,16)',
+    'rgb(82,34,7)',
+    'rgb(9,64,61)',
+    'rgb(9,66,97)',
+    'rgb(63 63 70)',
+    'rgb(58,8,99)',
+    'rgb(57,27,2)'
+  ];
+
+  const textColors = [
+    '#FFF',
+    '#0F0',
+    '#fffd2f',
+    '#ff1c1c'
+  ];
+
+  function about(shell) {
+    shell.printHTML('I\'m a <b>Software Engineer</b> with a proven track record of over 10 years in the field of software development. My expertise encompasses designing <b>data analysis and business intelligence architectures</b>, as well as building innovative <b>web and mobile solutions</b> in the cloud.\n'
+                    + 'I am driven by my passion for new technologies, including <b>AI</b>, and finding effective solutions to complex problems.\n'
+                    + 'Above all, my focus is on delivering measurable value to my clients and stakeholders. I hold certifications as a <b>Machine Learning Specialist and Solution Architect</b> from AWS, and I am also a certified <b>SCRUM Master</b>.\n'
+                    + 'My skill set includes working with <b>Big Data workflows</b> using tools such as <b>Athena, Glue, Hadoop, and Redshift</b>. I am proficient in Linux and have experience with containerization using Docker. In terms of programming languages, I am proficient in <b>Python, Javascript, Java, and PHP</b>. I have extensive knowledge of databases including <b>PostgreSQL, MongoDB, and MySQL</b>. For web development, I am experienced in frameworks like <b>Django and Laravel</b>. Additionally, I have expertise in developing mobile applications for <b>Android and React Native</b>.');
+
+    contact(shell)
+  }
+
+  function contact(shell) {
+    shell.printHTML('\n<b>Contact:</b>\n'
+              + 'Email: jluispcardenas@gmail.com\n'
+              + 'LinkedIn: <a href="https://www.linkedin.com/in/jose-luis-cardenas-54366983">https://www.linkedin.com/in/jose-luis-cardenas-54366983</a>\n'
+              + 'GitHub: <a href="http://github.com/jluispcardenas">http://github.com/jluispcardenas</a>\n'
+              + 'Medium: <a href="https://medium.com/@jluis-pcardenas">https://medium.com/@jluis-pcardenas</a>\n');
+
+  }
+
+  function certifications(shell) {
+    shell.printHTML('\n<b>Certifications:</b>\n'
+                  + '<a href="https://www.credly.com/badges/7353d358-575c-4cd6-ab93-89758b2ff7ca/linked_in_profile">AWS Certified Machine Learning – Specialty</a>\n'
+                  + '<i>Amazon Web Services (AWS)</i>\n'
+                  + 'Expedition jun. 2023\n\n'
+                  + '<a href="https://www.credly.com/badges/0b56029b-079c-4647-869e-369d4e518a89/linked_in_profile">Professional Scrum Master™ I (PSM I)</a>\n'
+                  + '<i>Scrum.org</i>\n'
+                  + 'Expedition: oct. 2022\n\n'
+                  + '<a href="https://www.credly.com/badges/dfa75313-954f-4205-a9e1-7b7e9732cbc7?source=linked_in_profile">AWS Certified Solutions Architect</a>\n'
+                  + '<i>Amazon Web Services (AWS)</i>\n'
+                  + 'Expedition jul. 2022')
+  }
+
+  function experience(shell) {
+    shell.printHTML('<b>Professional Experience:</b>\n\n'
+                  + '<b>Project Development Manager</b>\n'
+                  + '<i>PREDIK Data-driven</i>\n'
+                  + 'mar. 2014 - 9 years\n\n'
+                  + 'In my role as the Head of Research and Development, I successfully led and managed the cloud services implementation for the company. I played a crucial role in designing and implementing internal tools for the data science team. Additionally, I designed and customized the Machine Learning pipeline process for clients. I also took responsibility for managing updates for the company\'s websites and mobile.\n\n'
+                  + '<b>Software Engineer</b>\n'
+                  + '<i>Bubok Publishing</i>\n'
+                  + 'mar. 2009 - feb. 2014\n'
+                  + 'As a member of the development team, I took on the responsibility of the publishing module for https://www.bubok.es. Additionally, I developed the foundational framework for the platform and led the improvements to the application.\n'
+                  + 'I also had the responsibility of implementing various projects for third-party clients.\n\n'
+                  + '<b>Software Engineer</b>\n'
+                  + '<i>Astra</i>'
+                  + 'mar. 2007 - mar. 2008\n'
+                  + 'As a software developer, I have been responsible for managing web and mobile development projects for third-party clients.')
+  }
+
+
+  function padToNChars(string, size) {
+    let newString = '';
+    for (let index = 0; index < (size - string.length); index++) {
+      newString = newString + ' ';
+    }
+    return string + newString;
+  }
+
+  function helpMenu(shell) {
+
+    shell.print('--------------------------------------------------------------');
+    shell.print('| Command       |  Description                               |');
+    shell.print('|---------------|--------------------------------------------|');
+    for (const key in commands) {
+      shell.print(`| ${padToNChars(key, 14)}| ${padToNChars(commands[key].description, 43)}|`);
+    }
+    shell.print('--------------------------------------------------------------');
+  }
+
+  function makePS1(path) {
+    if (path.slice(-1) !== '/') {
+      path += '/';
+    }
+    return `<strong class="text-green-400">\nuser@asimov:${path}\n$ </strong>`;
+  }
+
+  async function startShell(shell) {
+    shell
+      .clear()
+      .print("         _    _          _        ____              _                         ")
+      .print("        | |  | |   _   _(_)___   / ___|__ _ _ __ __| | ___ _ __   __ _ ___    ")
+      .print("     _  | |  | |  | | | | / __| | |   / _` | '__/ _` |/ _ \\ '_ \\ / _` / __|   ")
+      .print("    | |_| |  | |__| |_| | \\__ \\ | |__| (_| | | | (_| |  __/ | | | (_| \\__ \\   ")
+      .print("     \\___(_) |_____\\__,_|_|___/  \\____\\__,_|_|  \\__,_|\\___|_| |_|\\__,_|___/   ")
+      .printHTML('\nThis is my personal page; by following the commands, you can learn about my interests and professional experience.')
+      .print('Type "help" to see the commands list.');
+
+    let input = '';
+    while (input !== 'exit') {
+      input = await shell.input();
+      input = input.trim();
+      if (!input.length) {
+        continue;
+      }
+      const argv = input.split(' ');
+      if (Object.hasOwn(commands, argv[0])) {
+        await commands[argv[0]].handler(shell, argv);
+      } else {
+        shell.print(`${argv[0]}: command not found`);
+      }
+    }
+  }
+
+  const shell1 = new JsShell('shell-1', {
+    width: '100%',
+    height: '80vh',
+    textSize: '0.9rem',
+    backgroundColor: bgColors[0],
+    promptPS: makePS1('~/')
+  });
+
+  startShell(shell1);
+</script>
+</body>
+</html>
